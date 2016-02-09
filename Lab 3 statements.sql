@@ -3,7 +3,7 @@ Select ordnum, totalusd
 from orders ;
 
 -- #2 Selects names and cities from agents where the name is equal to Smith
-SELECT name, city, 
+SELECT name, city
 FROM agents
 WHERE name = 'Smith' ;
 
@@ -25,7 +25,7 @@ WHERE city <> 'New York' AND city <> 'Tokyo' ;
 -- #6 Used '>=' to set priceUSD to be greater than or equal to 1
 SELECT *
 FROM products
-WHERE <> 'Dallas' AND city <> 'Duluth' AND priceUSD >= 1 ;
+WHERE city <> 'Dallas' AND city <> 'Duluth' AND priceUSD >= 1 ;
 
 -- #7 Used like for jan and mar due to its data type
 SELECT * 
