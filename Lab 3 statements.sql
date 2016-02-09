@@ -10,7 +10,7 @@ WHERE name = 'Smith' ;
 #Selects Pid, name, and priceUSD from products where quantity is greater than 20800
 SELECT pid, name, priceUSD
 FROM products
-WHERE quantity > 20800 ;
+WHERE quantity > 208000 ;
 
 #Selects names and cities from customers where city is equal to Dallas
 SELECT name, city 
