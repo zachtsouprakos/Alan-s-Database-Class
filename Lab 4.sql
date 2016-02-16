@@ -60,4 +60,22 @@ WHERE discount in (SELECT discount
 		           FROM customers
 		           WHERE city in ('Dallas', 'London')
 		          );
-
+-- #8 Check constraints
+/* Check constraints are used to minimize the range of possibilites within a column. Examples of check 
+   constraints are: not null, default, unique, etc. The purpose of these constraints are too manipulate
+   the table in certain ways. For example, placing a not null contraint on a primary key would be a great
+   idea because then the primary key value would never be able to be empty, or "null". It would be a bad 
+   idea to place a unique key on a column that would have duplicated value, this would spoil the integrity 
+   of the database and not allow necessary data to be entered into the database.
+   Ex: 
+   	Create table student (
+   		Stud_ID int not null,
+   		Major text not null,
+   		minor text,
+   		primary key (Stud_ID) 
+    );
+    In this example I used students as a class. I declared the Stud_ID(student id) the primary key because it
+    is a unique identifier and every student has their own ID. I also made Major and Stud_ID not null because 
+    one must have an ID and have a major(Even undeclared will be shown in the database). However, I let minor 
+    alone because not every student has a minor so this value can be null.
+*/
