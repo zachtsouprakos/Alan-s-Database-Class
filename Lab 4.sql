@@ -25,16 +25,15 @@ WHERE cid NOT in (SELECT cid
               FROM orders
               WHERE aid like 'a01'
              );
--- #4 Selected cid and names fo customers who ordered both product P01 AND p07
+-- #4 Selected cid and names fo customers who ordered both product P01 AND p07 **CORRECT number 4
 SELECT cid
-FROM customers
-WHERE cid in (SELECT cid
-              FROM orders
-	          WHERE pid in (SELECT pid
-	                        FROM products
-	                        WHERE pid in ('p01', 'p07')
-	                       )   
-	         );  
+FROM orders
+WHERE pid = 'p01'
+INTERSECT 
+ SELECT cid
+ fROM orders
+ WHERE pid = 'p07' 
+ ;
 -- #5 Selected the pids of products ont ordered by any customers who have placed any order through agent a07
 SELECT pid
 FROM orders
