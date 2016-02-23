@@ -34,10 +34,10 @@ INTERSECT
  fROM orders
  WHERE pid = 'p07' 
  ;
--- #5 Selected the pids of products ont ordered by any customers who have placed any order through agent a07
-SELECT pid
-FROM orders
-WHERE cid NOT in (SELECT cid
+-- #5 Selected the pids of products ont ordered by any customers who have placed any order through agent a07 **CORRECT number 5
+SELECT DISTINCT pid
+FROM products
+WHERE pid NOT in (SELECT pid
                   FROM orders
                   WHERE aid like 'a07'
                  )
