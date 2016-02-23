@@ -16,7 +16,7 @@ WHERE aid in (SELECT aid
                             FROM customers
                             WHERE city = 'Dallas'
                            )
-              );
+              )
 ORDER BY pid desc ;
 -- #3 Selected the ids and names of customers who did not place an order throuygh agent a01
 SELECT name, city
