@@ -44,6 +44,17 @@ WHERE p.pid IN (SELECT pid
                 GROUP BY pid
                 ORDER BY COUNT(*)  
                 )
+
+--#7 Alternative #7 with subqueries that Jimmy helped me with
+SELECT DISTINCT c.name, c.city
+FROM customers c
+WHERE c.city IN (SELECT city
+                FROM products
+                GROUP BY city
+                ORDER BY COUNT(pid) ASC 
+                LIMIT 1
+                )
+ ;
  ;
 
 
