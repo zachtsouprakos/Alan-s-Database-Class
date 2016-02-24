@@ -23,6 +23,16 @@ FROM customers c inner join orders o on c.cid = o.cid
 order by totalUSD DESC ;
 
 --#4 NOT DONE FIX THIS ONE!!!!!!!!!******
-SELECT DISTINCT c.name, o.pid
+SELECT DISTINCT c.name, o.totalUSD
 FROM customers c inner join orders o ON c.cid = o.cid
-ORDER BY name ASC ;
+ORDER BY name ;
+
+--#5 This statement selects the customers name, product name, and agents, where the customer placed an order 
+-- through an agent from Tokyo and the product is for that specific order
+SELECT c.name, p.name, a.name
+FROM orders o INNER JOIN customers c ON o.cid = c.cid
+              INNER JOIN products p ON o.pid = p.pid
+              INNER JOIN agents a ON o.aid = a.aid
+WHERE a.city = 'Tokyo' ;
+
+--#6 
