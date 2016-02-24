@@ -36,16 +36,9 @@ WHERE a.city = c.city ;
 SELECT c.name, a.name, c.city, a.city
 FROM customers c INNER JOIN agents a ON c.city = a.city ;
 
---#7Select the name and city of customers who live in the same city the produce the fewest variety of products
-SELECT DISTINCT c.name, c.city 
-FROM customers c INNER JOIN products p ON c.city = p.city
-WHERE p.pid IN (SELECT pid
-                FROM products
-                GROUP BY pid
-                ORDER BY COUNT(*)  
-                )
 
--- #7 Alternative #7 with subqueries that Jimmy helped me with
+-- #7 This statement selects the customers name and city from the same city that makes the fewest products
+-- #7 with subqueries that Jimmy helped me with explaining COUNT(pid)
 SELECT DISTINCT c.name, c.city
 FROM customers c
 WHERE c.city IN (SELECT city
