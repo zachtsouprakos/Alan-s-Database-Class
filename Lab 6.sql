@@ -22,9 +22,9 @@ SELECT c.name, o.pid, o.totalUSD
 FROM customers c INNER JOIN orders o ON c.cid = o.cid
 order by totalUSD DESC ;
 
---#4 This statement does not use coalesce but returns users name and totalUSD
-SELECT DISTINCT c.name, o.totalUSD
-FROM customers c INNER JOIN orders o ON c.cid = o.cid
+--#4 This statement uses coalesce to return a null value as 0 where customer 'Weyland' did not place an order
+SELECT c.name, COALESCE(o.totalUSD,0)TOTALUSD
+FROM customers c FULL OUTER JOIN orders o ON c.cid=o.cid
 ORDER BY name ;
 
 --#5 This statement selects the customers name, product name, and agents, where the customer placed an order 
@@ -51,6 +51,25 @@ WHERE priceCHECK IN (SELECT priceCHECK
                   SELECT totalusd
                   FROM orders
                  ) ;
+--#7 
+/* 
+LEFT OUTER JOIN compares two tables. In this outer join, the table that is on the left is compared
+to the table on the right of the outer join statement, given what two columns are being compared.
+EX: SELECT c.name, COALESCE(o.totalUSD,0)TOTALUSD
+    FROM customers c LEFT OUTER JOIN orders o ON c.cid=o.cid
+    ORDER BY name ;
+In this example, the customers table would be compared to the orders table where the cid column have
+equal values in both tables. Without the coalesce statement, a null will be returned in the orders 
+column for every place there is not a matching cid in orders.
+
+A RIGHT OUTER JOIN does the same thing, just opposite. This statement compares the right table to the 
+left and returns a null for non-corresponding values.
+EX: SELECT c.name, COALESCE(o.totalUSD,0)TOTALUSD
+    FROM customers c RIGHT OUTER JOIN orders o ON c.cid=o.cid
+    ORDER BY name ;
+This example would compare orders to customers, where every time there is a non-corresponding value in 
+customers a null will be placed in the specific place(given that there is not a COALESCE statement).
+*/
 
 
 
