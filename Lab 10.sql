@@ -75,11 +75,12 @@ begin
 end;
 $$ 
 language plpgsql;
-
+-- This function selects preReqNum from prerequisites and compares the courseNum that is passed
+-- into the function as reqNum, thus resulting the prerequisites from the given course
 CREATE OR REPLACE FUNCTION PreReqsFor(INT, REFCURSOR) returns refcursor AS
 $$
 DECLARE
-  reqNum INT        := $1;
+  reqNum INT          := $1;
   resultset REFCURSOR := $2;
 BEGIN
   open resultset FOR
@@ -93,11 +94,12 @@ LANGUAGE plpgsql;
 
 SELECT PreReqsFor(499, 'resultset');
 FETCH ALL FROM resultset;
-
+-- This function selects the courseNum from the prereq table where the preReqNum is equal to the number
+-- that is passed into the function, thus showing the classes that needs the prereqs
 CREATE OR REPLACE FUNCTION IsPreReqFor(INT, REFCURSOR) returns refcursor AS
 $$
 DECLARE
-  reqNum INT        := $1;
+  reqNum INT          := $1;
   resultset REFCURSOR := $2;
 BEGIN
   open resultset FOR
